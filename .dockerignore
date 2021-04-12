@@ -1,0 +1,7 @@
+.git/
+.gitignore
+.dockerignore
+package-installed.checksum
+Dockerfile
+
+example/

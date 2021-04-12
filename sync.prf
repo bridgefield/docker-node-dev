@@ -1,0 +1,6 @@
+# Unison preferences
+include default
+ignore = Path node_modules
+ignore = Path .git
+ignore = Path dist
+ignore = Name package-installed.checksum
