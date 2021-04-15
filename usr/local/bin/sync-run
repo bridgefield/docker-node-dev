@@ -1,9 +1,15 @@
 #!/bin/bash
 
+if [ -n "$1" ]; then
+    export START_COMMAND=$@
+fi
+
+echo "START_COMMAND: $START_COMMAND"
+
 if [[ "$(stat -f -c %T  /app)" == "ext2/ext3" ]] && [ -n "$SKIP_SYNC_ON_FAST_FS" ]; then
   echo "no need for sync"
   cd /app
-  exec /bin/bash /run.sh
+  echo "$START_COMMAND" | exec bash
 fi
 
 mkdir -p /tmp/app/ /tmp/.unison

@@ -12,8 +12,10 @@ RUN apk --no-cache add \
 COPY [ ".", "/" ]
 
 ENV HOME=/tmp \
+    UNISONLOCALHOSTNAME=localhost \
+    START_COMMAND="/bin/bash -c 'sleep 3 && exec npm-run'" \
     NPM_RUN=serve
 
 VOLUME [ "/app", "/tmp" ]
 
-CMD [ "/sync-run.sh" ]
+CMD [ "sync-run" ]
