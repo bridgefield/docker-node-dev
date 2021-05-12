@@ -3,7 +3,7 @@
 make_checksum() {
     DIR_CHECKSUM=$(find node_modules -name package.json -type f -exec md5sum {} \; | sort -k 2 | md5sum | cut -d' ' -f1)
     PACK_CHECKSUM=$(md5sum package.json package-lock.json  | md5sum | cut -d' ' -f1)
-    echo "$DIR_CHECKSUM-$PACK_CHECKSUM"
+    echo "$DIR_CHECKSUM-$PACK_CHECKSUM-$(node --version)"
 }
 
 set -e
