@@ -16,5 +16,10 @@ mkdir -p /tmp/app/ /tmp/.unison
 cd /tmp/.unison
 ln -s /*.prf .
 
+unison sync
+echo
+echo "Pre sync done... Starting supervisord..."
+echo
+
 cd /tmp
 exec supervisord

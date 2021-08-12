@@ -19,10 +19,12 @@ if [ -d node_modules ]; then
     fi
 fi
 
+echo "Working dir: $(pwd)"
 if [ ! -d node_modules ] || [ -n "$FORCE_INSTALL" ]; then
-    echo "Installing npm packages"
+    echo "Installing npm packages..."
     npm ci --also=dev
     echo -n $(make_checksum) > package-installed.checksum
+    echo "Installing npm packages done."
 fi
 
 exec npm run $NPM_RUN
