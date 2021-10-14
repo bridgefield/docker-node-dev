@@ -1,0 +1,25 @@
+#!/bin/bash
+
+function finish {
+    supervisorctl stop monitor
+}
+
+trap finish EXIT
+
+FILES=""
+if [ -e package.json ]; then
+    FILES="package.json"
+fi
+if [ -e package-lock.json ]; then
+    FILES="$FILES package-lock.json"
+fi
+if [ -z "$FILES" ]; then
+    exit 1
+fi
+
+while true
+do
+    inotifywait -e modify package.json package-lock.json
+    supervisorctl restart app
+    sleep 1
+done
