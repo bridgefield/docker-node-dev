@@ -21,14 +21,16 @@ echo
 echo "Pre sync done... Starting supervisord..."
 echo
 
-if [ -n "$DELAY_START_PORT" ]; then
+if [ -n "$DELAY_START_PORT" ] && [ -e "/state/started" ]; then
   export AUTOSTART_APP=false
   export AUTOSTART_INETD=true
   sed "s/8080/$DELAY_START_PORT/" /etc/inetd.conf > /tmp/inetd.conf
   echo
-  echo "Delay start until first access on port $DELAY_START_PORT"
+  echo "Delay start of app until first access on port $DELAY_START_PORT"
   echo
 fi
+
+echo "" > /state/started
 
 cd /tmp
 exec supervisord

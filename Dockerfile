@@ -22,6 +22,8 @@ ENV HOME=/tmp \
     AUTOSTART_INETD=false \
     DELAY_START_PORT=""
 
+RUN mkdir -p /state && chmod 1777 /state
+
 VOLUME [ "/app", "/tmp" ]
 
 CMD [ "sync-run" ]

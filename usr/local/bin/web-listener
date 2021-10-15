@@ -9,7 +9,8 @@ while /bin/true; do
     [ "$header" == $'\r' ] && break
 done
 
-echo "HTTP/1.1 200 OK"
+echo "HTTP/1.1 503 Service Unavailable"
+echo "Retry-After: 5"
 echo "Cache-Control: no-cache"
 echo "Content-type: text/html"
 echo -e "\n"
@@ -20,8 +21,8 @@ echo '<script type="text/javascript">window.setTimeout(function () { location.re
 echo '</head>'
 echo '<body>Starting App...</body>'
 echo '</html>'
-
-supervisorctl stop inetd
+echo '<!--'
+supervisorctl stop inetd 
 supervisorctl start app
 
 exit 0
