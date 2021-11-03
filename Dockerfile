@@ -14,6 +14,7 @@ RUN apk --no-cache add \
 COPY [ ".", "/" ]
 
 ENV HOME=/tmp \
+    UNISON_REPEAT=watch \
     UNISONLOCALHOSTNAME=localhost \
     START_COMMAND="npm-run" \
     NPM_RUN=serve \
